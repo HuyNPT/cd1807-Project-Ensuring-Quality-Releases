@@ -71,8 +71,6 @@ stages:
     #  inputs:
     #   secureFile: 
 
-    
-    # Run Terraform Apply
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
       displayName: Terraform apply
       inputs:
