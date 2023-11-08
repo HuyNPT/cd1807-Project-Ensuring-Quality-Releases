@@ -8,12 +8,12 @@ trigger:
 
 # ToDo: Replace the agent pool name, if you are using Udacity Cloud lab. 
 # Otherwise, comment out the line below. 
-pool: myAgentPool
+#pool: myAgentPool
 
 variables:
   python.version: '3.7.6'
   # ToDo: Replace the service connection name as used in the DevOps project settings
-  azureServiceConnectionId: 'myServiceConnection'
+  azureServiceConnectionId: 'Devops'
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
   # Environment name
@@ -61,7 +61,6 @@ stages:
     # ToDo: Change the inputs value below
     # - task: InstallSSHKey@0
     #   inputs:
-     knownHostsEntry: 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' # variable value
      sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDg4s7qO8fBYH+FsqOGTrBWeKxfWp5hP3nzWzj2B4koDT9aI/FM127HccjXQmEGRbiofNi3/z2wGEbJFDIIoI4DT7Cx113qCAfUkyBWEpP28l0bUC+Owj7iyMYPEWDsP9Pt2M3k26RN90HB4Cj+N/s61QsCqfms75IqJMRfEWyzkg9yP/OZvqiMx7GWNBZNMtNKOrDZ8AW+W3C5ey1pBCzoYd27WotM0kKmUCcyr1ai4CdJsmahnbhjL+3JYnmIB2Dv35fkoA5Fm9w1aJstdoE6UelBF1nfi41DclgDKPUW/nlxxkkbBKzNRbUPzKSrC3lZet1CCxtsprYBhhWa6Rr5iySTfTQmkH+Z1j/THRVSkeyVeEvY61SraEADH4sgB5fRvq7nYKDsOrhuAei2UqAnWjNA8HR/rblDDFdhse2nALIIIMA08iU4mH5WtcimOFAXEx0xZHz2pPSsilo5+WTkizbAMqcSItetSOcNcouNqgK9ALvo2GUneEQb3Ny4wCs= huynpt@DESKTOP-O42P5FG'            # variable value
      sshKeySecureFile: 'id_rsa' # Use secure file feature in the pipeline library UI to save the "id_rsa" file, as mentioned here: https://learn.microsoft.com/en-us/azure/devops/pipelines/library/secure-files?view=azure-devops#add-a-secure-file
     
