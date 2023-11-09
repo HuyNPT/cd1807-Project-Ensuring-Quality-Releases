@@ -8,7 +8,7 @@ variable "tenant_id" {}
 variable "location" {}
 variable "resource_group" {
     type = string
-    default = "Demo"
+    default = "Demo1"
 }
 variable "application_type" {}
 
