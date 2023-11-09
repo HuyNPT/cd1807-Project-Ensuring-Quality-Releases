@@ -106,8 +106,8 @@ stages:
                   displayName: 'Deploy Azure Web App'
                   inputs:
                     azureSubscription: '$(azureServiceConnectionId)'
-                    appType: 'webAppLinux'
-                    appName: 'MyApplication-Service'
+                    appType: 'webApp'
+                    appName: 'Fake-API-Project3'
                     package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
                     deploymentMethod: 'auto'
       - deployment: DeployVirtualMachine
