@@ -147,12 +147,12 @@ stages:
                       chromedriver --version
                       # install Log Analytics Agent
                       wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w cbe0ec30-c458-41a4-9b6b-421205cf995e -s CI/JBZBRaayR6cbyEZVvFucqeRXRNVICiKRk1GUczQcAb+kQ+hIReFxRJ2AComJs55gkmkXRrvJEwTKAsmL9gA== -d opinsights.azure.com
-
-                      - stage: SeleniumTests
-  
+                      
+- stage: SeleniumTests
+  jobs:
       - deployment: SeleniumTests
         environment:
-          name:  'Devops'
+          name:  'UdacityAzureDevOps3Environment'
           resourceType: VirtualMachine
         strategy:
           runOnce:
