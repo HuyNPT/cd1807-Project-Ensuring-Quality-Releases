@@ -14,6 +14,7 @@ def create_driver():
     return webdriver.Chrome(options=options)
 
 def test_login (driver, user, password):
+    print("Started")
     print ('Test: login page. Navigating to the  login {}'.format(login_url))
     driver.get(login_url)
     print ('Login attempt, user: {},  password: {}'.format(user, password))
@@ -23,9 +24,12 @@ def test_login (driver, user, password):
     assert inventory_url in driver.current_url
     print ('User successfully logged in.')
     print ('Test Login page Success.')
+    print("Ended")
+
 
 def test_add_items_to_cart(driver):
     items_in_cart = []
+    print("Started")
     print ('Test: Add to cart')
     elements = driver.find_elements_by_class_name('inventory_item')
 
@@ -45,11 +49,12 @@ def test_add_items_to_cart(driver):
     for item in driver.find_elements_by_class_name('inventory_item_name'):
         assert item.text in items_in_cart
     print ('Test Add to cart Success.')
+    print("End")
 
 def run_ui_tests():
     driver = create_driver()
     #print("Browser started successfully.")
-    print("UI Tests started")
+    print("Started")
     
     print("Test login")
     test_login(driver, 'standard_user', 'secret_sauce')
@@ -58,6 +63,7 @@ def run_ui_tests():
 
     print("UI Tests completed.")
     driver.quit()
+    print("End")
 
 if __name__ == "__main__":
     run_ui_tests()
