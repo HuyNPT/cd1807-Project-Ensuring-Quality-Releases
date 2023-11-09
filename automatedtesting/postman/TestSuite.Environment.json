@@ -1,0 +1,39 @@
+{
+	"id": "202db7f3-589c-4c3c-b57a-8b679700c890",
+	"name": "Udacity-Test",
+	"values": [
+		{
+			"key": "name",
+			"value": "Test",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "salary",
+			"value": "1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "age",
+			"value": "18",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "employeeId",
+			"value": "1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "id",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-11-09T08:48:06.307Z",
+	"_postman_exported_using": "Postman/10.19.17"
+}

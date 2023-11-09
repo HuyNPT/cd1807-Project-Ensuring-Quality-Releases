@@ -196,15 +196,9 @@ stages:
               script: 'npm install -g newman'
               workingDirectory: '$(System.DefaultWorkingDirectory)'
           - task: CmdLine@2
-            displayName: Run Regression Tests
+            displayName: Run Regression Tests and Validate Data Tests
             inputs:
-              script: 'newman run automatedtesting/postman/RegressionTestSuite.json -e automatedtesting/postman/RegressionTestSuite.Environment.json --delay-request 5000 --bail newman -x --reporters cli,junit --reporter-junit-export Results/RegressionTests.xml'
-              workingDirectory: '$(System.DefaultWorkingDirectory)'
-            continueOnError: true
-          - task: CmdLine@2
-            displayName: Run Data Validation Tests
-            inputs:
-              script: 'newman run automatedtesting/postman/DataValidationTestSuite.json -e automatedtesting/postman/DataValidationTestSuite.Environment.json --delay-request 5000 --bail newman -x --reporters cli,junit --reporter-junit-export Results/DataValidationTests.xml'
+              script: 'newman run automatedtesting/postman/TestSuite.json -e automatedtesting/postman/TestSuite.Environment.json --delay-request 5000 --bail newman -x --reporters cli,junit --reporter-junit-export Results/RegressionTests.xml'
               workingDirectory: '$(System.DefaultWorkingDirectory)'
             continueOnError: true
           - task: CmdLine@2
