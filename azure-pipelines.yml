@@ -17,10 +17,10 @@ variables:
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
   # Environment name
-  environmentName: 'test'
+  environmentName: 'Devops'
 
 stages:
-- stage: Build
+- stage: BuildInfrastructure
   jobs:
   - job: BuildInfrastructure
     steps:
@@ -97,7 +97,7 @@ stages:
       - deployment: DeployFakeRestAPI
         pool:
           name: Default
-        environment: 'UdacityAzureDevOps3Environment'
+        environment: 'Devops'
         strategy:
           runOnce:
             deploy:
@@ -112,7 +112,7 @@ stages:
                     deploymentMethod: 'auto'
       - deployment: DeployVirtualMachine
         environment:
-          name:  'UdacityAzureDevOps3Environment'
+          name:  'Devops'
           resourceType: VirtualMachine
         strategy:
           runOnce:
@@ -152,7 +152,7 @@ stages:
   
       - deployment: SeleniumTests
         environment:
-          name:  'UdacityAzureDevOps3Environment'
+          name:  'Devops'
           resourceType: VirtualMachine
         strategy:
           runOnce:
