@@ -152,7 +152,7 @@ stages:
   jobs:
       - deployment: SeleniumTests
         environment:
-          name:  'UdacityAzureDevOps3Environment'
+          name:  'Devops'
           resourceType: VirtualMachine
         strategy:
           runOnce:
@@ -209,7 +209,7 @@ stages:
               testResultsFormat: 'JUnit'
               testResultsFiles: '$(System.DefaultWorkingDirectory)/Results/*.xml'
 
-- stage: JMeterTests
+              UdacityAzureDevOps3Environment- stage: JMeterTests
   jobs:
       - job: JMeterTests
         steps:
