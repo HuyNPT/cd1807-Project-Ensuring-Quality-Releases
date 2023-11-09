@@ -124,6 +124,9 @@ stages:
                     targetType: 'inline'
                     script: |
                       #! /bin/bash
+                      sudo apt-get update
+                      sudo apt-get install openjdk-11-jdk
+                      echo "##vso[task.prependpath]/path/to/java"
 
                       sudo apt-get upgrade -y
                       sudo apt-get install python3-pip -y
