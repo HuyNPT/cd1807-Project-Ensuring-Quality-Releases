@@ -20,47 +20,47 @@ variables:
   environmentName: 'Devops'
 
 stages:
-- stage: BuildInfrastructure
-  jobs:
-  - job: BuildInfrastructure
-    steps:
-    # Install Terraform on the pipeline agent 
-    - task: TerraformInstaller@0
-      displayName: 'Terrafom installation'
-      inputs:
-        terraformVersion: '1.2.9'
+# - stage: BuildInfrastructure
+#   jobs:
+#   - job: BuildInfrastructure
+#     steps:
+#     # Install Terraform on the pipeline agent 
+#     - task: TerraformInstaller@0
+#       displayName: 'Terrafom installation'
+#       inputs:
+#         terraformVersion: '1.2.9'
     
-    # Run Terraform Init on the pipeline agent 
-    # ToDo: Replace the resource group name, storage account name, and container name below
-    - task: TerraformTaskV3@3
-      displayName: 'Terrafom init'
-      inputs:
-        provider: 'azurerm'
-        command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
-        backendServiceArm: '$(azureServiceConnectionId)'
-        backendAzureRmResourceGroupName: 'Azuredevops'
-        backendAzureRmStorageAccountName: 'tfstate2795714930'
-        backendAzureRmContainerName: 'tfstate'
-        backendAzureRmKey: 'test.terraform.tfstate'
+#     # Run Terraform Init on the pipeline agent 
+#     # ToDo: Replace the resource group name, storage account name, and container name below
+#     - task: TerraformTaskV3@3
+#       displayName: 'Terrafom init'
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'init'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
+#         backendServiceArm: '$(azureServiceConnectionId)'
+#         backendAzureRmResourceGroupName: 'Azuredevops'
+#         backendAzureRmStorageAccountName: 'tfstate2795714930'
+#         backendAzureRmContainerName: 'tfstate'
+#         backendAzureRmKey: 'test.terraform.tfstate'
 
-    # Run Terraform Validate    
-    - task: TerraformTaskV3@3
-      displayName: Terraform validate
-      inputs:
-        provider: 'azurerm'
-        command: 'validate'
+#     # Run Terraform Validate    
+#     - task: TerraformTaskV3@3
+#       displayName: Terraform validate
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'validate'
 
     
-    # Run Terraform Apply
-    # ToDo: Change the workingDirectory path, as applicable to you
-    - task: TerraformTaskV3@3
-      displayName: Terraform apply
-      inputs:
-        provider: 'azurerm'
-        command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
-        environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
+#     # Run Terraform Apply
+#     # ToDo: Change the workingDirectory path, as applicable to you
+#     - task: TerraformTaskV3@3
+#       displayName: Terraform apply
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'apply'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
+#         environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
 
     # Destroy the resources in Azure
     # ToDo: Change the workingDirectory path, as applicable to you     
@@ -92,24 +92,24 @@ stages:
 #           - upload: $(Build.ArtifactStagingDirectory)/selenium-tests.zip
 #             artifact: selenium
 
-# - stage: Deployment
-#   jobs:
-#       - deployment: DeployFakeRestAPI
-#         pool:
-#           name: Default
-#         environment: 'Devops'
-#         strategy:
-#           runOnce:
-#             deploy:
-#               steps:
-#                 - task: AzureWebApp@1
-#                   displayName: 'Deploy Azure Web App'
-#                   inputs:
-#                     azureSubscription: '$(azureServiceConnectionId)'
-#                     appType: 'webApp'
-#                     appName: 'Fake-API-Project3'
-#                     package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
-#                     deploymentMethod: 'auto'
+- stage: Deployment
+  jobs:
+      - deployment: DeployFakeRestAPI
+        pool:
+          name: Default
+        environment: 'Devops'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureWebApp@1
+                  displayName: 'Deploy Azure Web App'
+                  inputs:
+                    azureSubscription: '$(azureServiceConnectionId)'
+                    appType: 'webApp'
+                    appName: 'Fake-API-Project3'
+                    package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
+                    deploymentMethod: 'auto'
 #       - deployment: DeployVirtualMachine
 #         environment:
 #           name:  'Devops'
