@@ -110,77 +110,77 @@ stages:
                     appName: 'Fake-API-Project3'
                     package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
                     deploymentMethod: 'auto'
-#       - deployment: DeployVirtualMachine
-#         environment:
-#           name:  'Devops'
-#           resourceType: VirtualMachine
-#         strategy:
-#           runOnce:
-#             deploy:
-#               steps:
-#                 - task: Bash@3
-#                   displayName: 'Install Dependencies'
-#                   inputs:
-#                     targetType: 'inline'
-#                     script: |
-#                       #! /bin/bash
-#                       rm -rf /opt/jdk
-#                       mkdir /opt/jdk
-#                       wget https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz
-#                       tar -zxf OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz -C /opt/jdk
-#                       export PATH=$PWD/jdk8u322-b06/bin:$PATH
-#                       update-alternatives --install /usr/bin/java java /opt/jdk/jdk8u322-b06/bin/java 100 && \
-#                       update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk8u322-b06/bin/javac 100 && \
-#                       update-alternatives --install /usr/bin/jar jar /opt/jdk/jdk8u322-b06/bin/jar 100 && \
-#                       echo 'export JAVA_HOME=/opt/jdk/jdk8u322-b06/' >> /etc/profile.d/java.sh
-#                       java -version
+      - deployment: DeployVirtualMachine
+        environment:
+          name:  'Devops'
+          resourceType: VirtualMachine
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: Bash@3
+                  displayName: 'Install Dependencies'
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      #! /bin/bash
+                      rm -rf /opt/jdk
+                      mkdir /opt/jdk
+                      wget https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz
+                      tar -zxf OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz -C /opt/jdk
+                      export PATH=$PWD/jdk8u322-b06/bin:$PATH
+                      update-alternatives --install /usr/bin/java java /opt/jdk/jdk8u322-b06/bin/java 100 && \
+                      update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk8u322-b06/bin/javac 100 && \
+                      update-alternatives --install /usr/bin/jar jar /opt/jdk/jdk8u322-b06/bin/jar 100 && \
+                      echo 'export JAVA_HOME=/opt/jdk/jdk8u322-b06/' >> /etc/profile.d/java.sh
+                      java -version
 
-#                       sudo apt-get upgrade -y
-#                       sudo apt-get install python3-pip -y
-#                       sudo apt-get install unzip -y
-#                       sudo apt-get install -y chromium-browser
-#                       pip3 install selenium==4.2.0 --force-reinstall
-#                       pip3 install webdriver-manager
-#                       # download chrome driver
-#                       FILE=chromedriver_linux64.zip
-#                       if [ -f "$FILE" ]; then
-#                         echo "$FILE exists."
-#                       else
-#                         wget https://chromedriver.storage.googleapis.com/97.0.4692.20/chromedriver_linux64.zip 
-#                       fi
-#                       # install chrome driver
-#                       unzip chromedriver_linux64.zip
-#                       sudo mv chromedriver /usr/bin/chromedriver
-#                       sudo chown root:root /usr/bin/chromedriver
-#                       sudo chmod +x /usr/bin/chromedriver
-#                       chromium-browser -version
-#                       chromedriver --version
-#                       # install Log Analytics Agent
-#                       wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w cbe0ec30-c458-41a4-9b6b-421205cf995e -s CI/JBZBRaayR6cbyEZVvFucqeRXRNVICiKRk1GUczQcAb+kQ+hIReFxRJ2AComJs55gkmkXRrvJEwTKAsmL9gA== -d opinsights.azure.com
+                      sudo apt-get upgrade -y
+                      sudo apt-get install python3-pip -y
+                      sudo apt-get install unzip -y
+                      sudo apt-get install -y chromium-browser
+                      pip3 install selenium==4.2.0 --force-reinstall
+                      pip3 install webdriver-manager
+                      # download chrome driver
+                      FILE=chromedriver_linux64.zip
+                      if [ -f "$FILE" ]; then
+                        echo "$FILE exists."
+                      else
+                        wget https://chromedriver.storage.googleapis.com/97.0.4692.20/chromedriver_linux64.zip 
+                      fi
+                      # install chrome driver
+                      unzip chromedriver_linux64.zip
+                      sudo mv chromedriver /usr/bin/chromedriver
+                      sudo chown root:root /usr/bin/chromedriver
+                      sudo chmod +x /usr/bin/chromedriver
+                      chromium-browser -version
+                      chromedriver --version
+                      # install Log Analytics Agent
+                      wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w cbe0ec30-c458-41a4-9b6b-421205cf995e -s CI/JBZBRaayR6cbyEZVvFucqeRXRNVICiKRk1GUczQcAb+kQ+hIReFxRJ2AComJs55gkmkXRrvJEwTKAsmL9gA== -d opinsights.azure.com
                       
-# - stage: SeleniumTests
-#   jobs:
-#       - deployment: SeleniumTests
-#         environment:
-#           name:  'Devops'
-#           resourceType: VirtualMachine
-#         strategy:
-#           runOnce:
-#             deploy:
-#               steps:
-#                 - download: current
-#                   displayName: 'Download Selenium'
-#                   artifact: selenium
-#                 - task: Bash@3
-#                   displayName: UI Tests
-#                   inputs:
-#                     targetType: 'inline'
-#                     script: |
-#                       unzip -o $(Pipeline.Workspace)/selenium/selenium-tests.zip -d .
-#                       sudo mkdir -p /var/logs
-#                       python3 uitests.py > ui-logs.log
-#                       cat ui-logs.log
-#                       sudo mv ui-logs.log /var/logs
+- stage: SeleniumTests
+  jobs:
+      - deployment: SeleniumTests
+        environment:
+          name:  'Devops'
+          resourceType: VirtualMachine
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  displayName: 'Download Selenium'
+                  artifact: selenium
+                - task: Bash@3
+                  displayName: UI Tests
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      unzip -o $(Pipeline.Workspace)/selenium/selenium-tests.zip -d .
+                      sudo mkdir -p /var/logs
+                      python3 uitests.py > ui-logs.log
+                      cat ui-logs.log
+                      sudo mv ui-logs.log /var/logs
 
 # - stage: PostmanTests
 #   jobs:
