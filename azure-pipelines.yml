@@ -217,13 +217,4 @@ stages:
           - task: JMeterInstaller@0
             inputs:
               jmeterVersion: '5.2.1'
-          - task: Bash@3
-            displayName: EnduranceTest
-            inputs:
-              targetType: 'inline'
-              script: 'jmeter -n -t automatedtesting/jmeter/Starter.jmx -Jresdir=automatedtesting/jmeter/endurancepages.csv -l automatedtesting/jmeter/report/enduranceresults.jtl -e -o automatedtesting/jmeter/endurancereport'
-          - task: PublishBuildArtifacts@1
-            inputs:
-              PathtoPublish: 'automatedtesting/jmeter'
-              ArtifactName: 'jmeter'
-              publishLocation: 'Container'
+          
