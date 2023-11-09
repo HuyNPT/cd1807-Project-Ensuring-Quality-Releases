@@ -51,7 +51,7 @@ def test_add_items_to_cart(driver):
     print ('Test Add to cart Success.')
     print("End")
 
-def run_ui_tests():
+def run_tests():
     driver = create_driver()
     #print("Browser started successfully.")
     print("Started")
@@ -66,4 +66,4 @@ def run_ui_tests():
     print("End")
 
 if __name__ == "__main__":
-    run_ui_tests()
+    run_tests()
