@@ -149,7 +149,7 @@ stages:
                       wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w cbe0ec30-c458-41a4-9b6b-421205cf995e -s CI/JBZBRaayR6cbyEZVvFucqeRXRNVICiKRk1GUczQcAb+kQ+hIReFxRJ2AComJs55gkmkXRrvJEwTKAsmL9gA== -d opinsights.azure.com
 
                       - stage: SeleniumTests
-  jobs:
+  
       - deployment: SeleniumTests
         environment:
           name:  'UdacityAzureDevOps3Environment'
@@ -195,6 +195,7 @@ stages:
             displayName: Run Data Validation Tests
             inputs:
               script: 'newman run automatedtesting/postman/Starter APIs.postman_collection.json -e automatedtesting/postman/Udacity-Test.postman_environment.json --delay-request 5000 --bail newman -x --reporters cli,junit --reporter-junit-export Results/RegressionTests.xml'
+
               workingDirectory: '$(System.DefaultWorkingDirectory)'
             continueOnError: true
           - task: CmdLine@2
