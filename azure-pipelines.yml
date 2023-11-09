@@ -140,7 +140,7 @@ stages:
                       sudo apt-get install unzip -y
                       sudo apt-get install -y chromium-browser
                       pip3 install selenium
-
+                      pip3 install webdriver-manager
                       # download chrome driver
                       FILE=chromedriver_linux64.zip
                       if [ -f "$FILE" ]; then
