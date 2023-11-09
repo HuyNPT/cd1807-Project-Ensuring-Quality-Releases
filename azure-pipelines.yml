@@ -65,32 +65,32 @@ stages:
     # Destroy the resources in Azure
     # ToDo: Change the workingDirectory path, as applicable to you     
 
-# - stage: Build
-#   jobs:
-#       - job: Build
-#         pool:
-#           name: Default
-#         steps:
-#           - task: ArchiveFiles@2
-#             displayName: 'Archive FakeRestAPI'
-#             inputs:
-#               rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter/fakerestapi'
-#               includeRootFolder: false
-#               archiveType: 'zip'
-#               archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
-#           - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
-#             displayName: 'Upload Package'
-#             artifact: drop-fakerestapi
-#           - task: ArchiveFiles@2
-#             displayName: 'Archive files'
-#             inputs:
-#               rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/selenium'
-#               includeRootFolder: false
-#               archiveType: zip
-#               archiveFile: $(Build.ArtifactStagingDirectory)/selenium-tests.zip
-#               replaceExistingArchive: true
-#           - upload: $(Build.ArtifactStagingDirectory)/selenium-tests.zip
-#             artifact: selenium
+- stage: Build
+  jobs:
+      - job: Build
+        pool:
+          name: Default
+        steps:
+          - task: ArchiveFiles@2
+            displayName: 'Archive FakeRestAPI'
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter/fakerestapi'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+          - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
+            displayName: 'Upload Package'
+            artifact: drop-fakerestapi
+          - task: ArchiveFiles@2
+            displayName: 'Archive files'
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/selenium'
+              includeRootFolder: false
+              archiveType: zip
+              archiveFile: $(Build.ArtifactStagingDirectory)/selenium-tests.zip
+              replaceExistingArchive: true
+          - upload: $(Build.ArtifactStagingDirectory)/selenium-tests.zip
+            artifact: selenium
 
 - stage: Deployment
   jobs:
