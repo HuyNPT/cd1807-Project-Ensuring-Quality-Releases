@@ -174,8 +174,8 @@ stages:
 
 - stage: PostmanTests
   jobs:
-      - job: PostmanTests
-        steps:
+       - job: PostmanTests
+         steps:
           - task: NodeTool@0
             displayName: Install Node v16.X
             inputs:
@@ -209,7 +209,8 @@ stages:
               testResultsFormat: 'JUnit'
               testResultsFiles: '$(System.DefaultWorkingDirectory)/Results/*.xml'
 
-              UdacityAzureDevOps3Environment- stage: JMeterTests
+              
+- stage: JMeterTests
   jobs:
       - job: JMeterTests
         steps:
