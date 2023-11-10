@@ -1,56 +1,59 @@
 
 
-
+import datetime
 login_url = 'https://www.saucedemo.com/'
 inventory_url = 'https://www.saucedemo.com/inventory.html'
 cart_url = 'https://www.saucedemo.com/cart.html'
 
 def init_driver():
     print ('Starting the browser...')
-    
+
+def timestamp():
+    ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return (ts + '\t')    
     
 
 
 def test_login (user, password):
-    print ('Test: login. Navigating to the demo page to login {}'.format(login_url))
+    print (timestamp() +'Test: login. Navigating to the demo page to login {}'.format(login_url))
     
-    print ('Login attempt, user: {},  password: {}'.format(user, password))
+    print (timestamp()+'Login attempt, user: {},  password: {}'.format(user, password))
    
 
-    print ('Test Login Success.')
+    print (timestamp()+'Test Login Success.')
     
 
 def test_add_to_cart():
-    print ('Test: adding items to cart')
-    print('Added {} to cart'.format("Sauce Labs Backpack"))
+    print (timestamp()+'Test: adding items to cart')
+    print(timestamp()+'Added {} to cart'.format("Sauce Labs Backpack"))
    
 
     
-    print ('Test Add Items in cart Success.')
+    print (timestamp()+'Test Add Items in cart Success.')
 
 
 def test_remove_from_cart():
-    print ('Test: removing items from cart')
+    print (timestamp()+'Test: removing items from cart')
     
-    print("Items in Cart: {}".format("1"))
+    print(timestamp()+"Items in Cart: {}".format("1"))
  
    
-    print('Removed {} from cart'.format("Sauce Labs Backpack"))
+    print(timestamp()+'Removed {} from cart'.format("Sauce Labs Backpack"))
 
-    print('Cart empty.')
-    print ('Test Remove Items from cart Success.')
+    print(timestamp()+'Cart empty.')
+    print (timestamp()+'Test Remove Items from cart Success.')
 
 
 def run_tests():
-    print("UI Tests started")
+    print(timestamp()+"UI Tests started")
   
-    print("Test login user")
-    test_login( 'standard_user', 'secret_sauce')
-    print("Test add items")
+    print(timestamp()+"Test login user")
+    test_login( timestamp()+'standard_user', 'secret_sauce')
+    print(timestamp()+"Test add items")
     test_add_to_cart()
-    print("Test remove items")
+    print(timestamp()+"Test remove items")
     test_remove_from_cart()
-    print("UI Tests completed.")
+    print(timestamp()+"UI Tests completed.")
 
 if __name__ == "__main__":
     run_tests()
